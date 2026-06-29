@@ -1,0 +1,23 @@
+# ─── Python ───────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ─── Secrets / environment ────────────────
+.env
+
+# ─── OS / editor ──────────────────────────
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# ─── Training data (download separately, see README) ───
+PlantVillage/
+
+# ─── Large model checkpoint (regenerate via train.py) ───
+# NOTE: output/model.onnx + model.onnx.data ARE committed so the app runs.
+output/best_model.pth

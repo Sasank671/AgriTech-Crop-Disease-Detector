@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KrishiAI — Crop Disease Detector</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ═══ PAGE: AUTH ════════════════════════════════════════ -->
+<div id="page-auth" class="page active">
+
+  <div class="auth-left">
+    <div class="leaf-bg">
+      <svg class="leaf-anim" style="bottom:-60px;right:-80px;opacity:.06;" width="320" height="320" viewBox="0 0 200 200" fill="white">
+        <path d="M100 10 C155 10 185 55 185 100 C185 145 155 190 100 190 C45 190 15 145 15 100 C15 55 45 10 100 10Z"/>
+      </svg>
+      <svg class="leaf-anim2" style="top:10px;right:10px;opacity:.05;" width="180" height="180" viewBox="0 0 200 200" fill="white">
+        <path d="M100 10 C155 10 185 55 185 100 C185 145 155 190 100 190 C45 190 15 145 15 100 C15 55 45 10 100 10Z"/>
+      </svg>
+      <svg class="leaf-anim3" style="top:45%;left:-40px;opacity:.05;" width="140" height="140" viewBox="0 0 200 200" fill="white">
+        <path d="M100 10 C155 10 185 55 185 100 C185 145 155 190 100 190 C45 190 15 145 15 100 C15 55 45 10 100 10Z"/>
+      </svg>
+    </div>
+
+    <div class="brand-mark">
+      <div class="brand-icon">🌿</div>
+      <span class="brand-name">KrishiAI</span>
+    </div>
+    <div class="auth-headline">Detect crop<br>diseases <em>instantly</em><br>with AI.</div>
+    <div class="auth-desc">
+      Upload a photo of your crop and our AI identifies diseases in seconds — then tells you exactly how to treat them.
+    </div>
+    <div class="auth-stats">
+      <div>
+        <div class="auth-stat-num">38+</div>
+        <div class="auth-stat-label">Disease types detected</div>
+      </div>
+      <div>
+        <div class="auth-stat-num">EN / हि</div>
+        <div class="auth-stat-label">Bilingual support</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="auth-box">
+
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</div>
+        <div class="auth-tab" id="tab-register" onclick="switchTab('register')">Register</div>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="frm-login" class="auth-form active">
+        <div class="alert alert-error" id="login-err"></div>
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input class="form-input" type="text" id="l-user" placeholder="Your username" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="inp-wrap">
+            <input class="form-input has-icon" type="password" id="l-pass" placeholder="Your password"
+              autocomplete="current-password" onkeydown="if(event.key==='Enter') handleLogin()">
+            <span class="inp-icon" onclick="togglePw('l-pass', this)">👁</span>
+          </div>
+        </div>
+        <button class="btn btn-green" id="login-btn" onclick="handleLogin()">Sign In</button>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div id="frm-register" class="auth-form">
+        <div class="alert alert-error" id="reg-err"></div>
+        <div class="alert alert-success" id="reg-ok"></div>
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input class="form-input" type="text" id="r-user" placeholder="Choose a username" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" type="email" id="r-email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="inp-wrap">
+            <input class="form-input has-icon" type="password" id="r-pass"
+              placeholder="Create a strong password" autocomplete="new-password" oninput="onPwInput(this.value)">
+            <span class="inp-icon" onclick="togglePw('r-pass', this)">👁</span>
+          </div>
+          <div class="pw-meter">
+            <div class="pw-bar-track"><div class="pw-bar-fill" id="pw-fill"></div></div>
+            <div class="pw-checklist">
+              <div class="pw-check" id="rc-len"><div class="pw-dot"></div>8+ characters</div>
+              <div class="pw-check" id="rc-up"><div class="pw-dot"></div>Uppercase letter</div>
+              <div class="pw-check" id="rc-lo"><div class="pw-dot"></div>Lowercase letter</div>
+              <div class="pw-check" id="rc-num"><div class="pw-dot"></div>One number</div>
+              <div class="pw-check" id="rc-sp"><div class="pw-dot"></div>Special (!@#$%^&*)</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm password</label>
+          <div class="inp-wrap">
+            <input class="form-input has-icon" type="password" id="r-conf"
+              placeholder="Repeat your password" autocomplete="new-password">
+            <span class="inp-icon" onclick="togglePw('r-conf', this)">👁</span>
+          </div>
+        </div>
+        <button class="btn btn-green" id="reg-btn" onclick="handleRegister()">Create Account</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: LANGUAGE ════════════════════════════════════ -->
+<div id="page-language" class="page">
+  <div class="lang-brand">
+    <div class="lang-brand-icon">🌿</div>
+    <span class="lang-brand-name">KrishiAI</span>
+  </div>
+  <div class="lang-heading">Choose your language</div>
+  <div class="lang-sub">अपनी भाषा चुनें &nbsp;·&nbsp; You can change this anytime</div>
+  <div class="lang-cards">
+    <div class="lang-card" id="lc-en" onclick="pickLang('en')">
+      <div class="lang-card-flag">🇬🇧</div>
+      <div class="lang-card-name">English</div>
+      <div class="lang-card-hint">Continue in English</div>
+    </div>
+    <div class="lang-card" id="lc-hi" onclick="pickLang('hi')">
+      <div class="lang-card-flag">🇮🇳</div>
+      <div class="lang-card-name">हिंदी</div>
+      <div class="lang-card-hint">हिंदी में जारी रखें</div>
+    </div>
+  </div>
+  <button class="lang-continue" id="lang-continue-btn" onclick="confirmLang()">Continue →</button>
+</div>
+
+<!-- ═══ PAGE: PREDICT ════════════════════════════════════ -->
+<div id="page-predict" class="page">
+  <header class="pred-header">
+    <div class="pred-brand">
+      <div class="pred-brand-icon">🌿</div>
+      <span class="pred-brand-name">KrishiAI</span>
+    </div>
+    <div class="pred-header-right">
+      <div class="lang-pill">
+        <button class="lang-pill-btn" id="p-en" onclick="switchLang('en')">EN</button>
+        <button class="lang-pill-btn" id="p-hi" onclick="switchLang('hi')">हि</button>
+      </div>
+      <div class="user-chip">
+        <div class="user-avi" id="u-avi">U</div>
+        <span class="user-chip-name" id="u-name">User</span>
+      </div>
+      <button class="hist-btn" onclick="openHistory()" id="txt-hist-btn">History</button>
+      <button class="logout-btn" onclick="handleLogout()">Sign out</button>
+    </div>
+  </header>
+
+  <main class="pred-main">
+    <div class="page-title" id="txt-h">Analyse Your Crop</div>
+    <div class="page-sub" id="txt-sub">Upload a clear photo of the affected crop leaves or stem</div>
+
+    <!-- Drop zone -->
+    <div class="upload-zone" id="drop-zone">
+      <input type="file" id="file-inp" accept="image/jpeg,image/png,image/webp" onchange="onFileChosen(event)">
+      <div class="upload-ring">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#40916C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+      </div>
+      <div class="upload-zone-title" id="txt-uz-t">Drop your crop image here</div>
+      <div class="upload-zone-hint" id="txt-uz-h">or click to browse &nbsp;·&nbsp; JPG, PNG, WebP up to 10 MB</div>
+    </div>
+
+    <!-- Image preview with scan animation -->
+    <div class="preview-wrap" id="prev-wrap">
+      <img class="preview-img" id="prev-img" alt="Crop preview">
+      <div class="scan-overlay" id="scan-ov">
+        <div class="scan-grid-bg"></div>
+        <div class="scan-beam"></div>
+        <div class="scan-chip" id="txt-scan">Analysing...</div>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions" id="action-btns">
+      <button class="analyze-btn" id="an-btn" onclick="runAnalysis()">
+        <span id="txt-an-btn">🔬 Analyse Crop</span>
+      </button>
+      <button class="btn btn-outline" id="txt-clear" onclick="clearAll()">Clear image</button>
+    </div>
+
+    <!-- Results panel -->
+    <div class="results" id="results">
+      <div class="r-card">
+        <div class="r-badge dis" id="r-badge">⚠ Disease Detected</div>
+        <div class="r-title" id="r-disease">—</div>
+        <div class="r-sub" id="r-crop">Crop: —</div>
+        <div class="conf-row">
+          <span class="conf-label" id="txt-conf">Confidence</span>
+          <div class="conf-track"><div class="conf-fill" id="conf-fill" style="width:0%"></div></div>
+          <span class="conf-pct" id="conf-pct">0%</span>
+        </div>
+      </div>
+      <div class="r-grid">
+        <div class="r-card">
+          <div class="r-section-label" id="txt-lbl-sev">Severity</div>
+          <div class="r-section-body">
+            <div id="r-sev-label" style="font-weight:600;margin-bottom:4px">—</div>
+            <div id="r-sev-advice" style="color:var(--text-mid);font-size:0.9rem">—</div>
+          </div>
+        </div>
+        <div class="r-card">
+          <div class="r-section-label" id="txt-lbl-treat">Treatment</div>
+          <div class="r-section-body" id="r-treat">—</div>
+        </div>
+      </div>
+      <div class="r-card">
+        <div class="r-section-label" id="txt-lbl-note">Additional Notes</div>
+        <div class="r-section-body" id="r-note">—</div>
+        <div id="r-source" style="margin-top:8px;font-size:0.78rem;color:var(--text-light)"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ═══ HISTORY OVERLAY ══════════════════════════════════ -->
+<div id="hist-overlay" class="hist-overlay" onclick="if(event.target===this)closeHistory()">
+  <div class="hist-panel">
+    <!-- LIST VIEW -->
+    <div id="hist-list-view">
+      <div class="hist-header">
+        <span id="hist-title">Scan History</span>
+        <button class="hist-close" onclick="closeHistory()">✕</button>
+      </div>
+      <div class="hist-list" id="hist-list"></div>
+    </div>
+    <!-- DETAIL VIEW -->
+    <div id="hist-detail-view" style="display:none;flex-direction:column;height:100%">
+      <div class="hist-header">
+        <button class="hist-back" onclick="backToHistory()">← <span id="txt-hist-back">Back</span></button>
+        <button class="hist-close" onclick="closeHistory()">✕</button>
+      </div>
+      <div class="hist-detail" id="hist-detail"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
