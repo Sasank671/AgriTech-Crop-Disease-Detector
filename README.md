@@ -60,8 +60,8 @@ Open **http://127.0.0.1:8000/** → register → pick language → upload a leaf
 
 ## Retraining (38 classes)
 `train.py` is written to run on a **Kaggle GPU notebook**:
-1. Add the `abdallahalidev/plantvillage-dataset` dataset, enable GPU + Internet.
-2. `pip install timm onnx onnxruntime`, then run `train.py`.
+1. Add the `plantvillage-dataset` dataset, enable GPU + Internet.
+2. `pip install timm onnx onnxscript onnxruntime`, then run `train.py`.
 3. Copy `model.onnx`, `model.onnx.data`, `class_names.json`, `metrics.json` from
    `/kaggle/working/output/` into this repo's `output/`.
 
