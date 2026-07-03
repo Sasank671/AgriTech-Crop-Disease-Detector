@@ -1,5 +1,5 @@
 # Training dependencies (train.py). Not needed to run the server.
-# On Kaggle, torch/torchvision are pre-installed — just: pip install timm onnx onnxruntime
+# On Kaggle, torch/torchvision are pre-installed — just: pip install timm onnx onnxscript onnxruntime
 torch
 torchvision
 timm
